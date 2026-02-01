@@ -23,10 +23,32 @@ Instead of just "guessing" what's in an image, the model can write and execute c
 
 2. **Run a task:**
    ```bash
-   uv run vision-sandbox --image "my_screenshot.png" --prompt "Find the 'Login' button."
+   uv run vision-sandbox --image "sample/how-many-fingers.png" --prompt "Count the fingers."
    ```
 
-## Local Development
+## Visual Example: Counting Fingers
+
+Using the included sample image, you can see the power of the sandbox. Instead of just identifying a hand, the model can logically isolate and count parts.
+
+**Command:**
+```bash
+uv run vision-sandbox --image "sample/how-many-fingers.png" --prompt "Count the number of fingers on this hand. Use code execution to identify the bounding box for each finger and return the total count."
+```
+
+**Result:** The model will write Python code to define bounding boxes for each digit, ensuring an accurate count rather than a visual guess.
+
+## Integration with OpenCode
+
+Vision Sandbox is a powerful companion for OpenCode (the coding agent). You can use it to provide visual context for your development tasks.
+
+### Workflow
+1. **Visual UI Grounding:** If you are building a UI, take a screenshot and ask Vision Sandbox to get the exact coordinates of elements.
+2. **Pass to OpenCode:** Feed those coordinates back into your OpenCode session to write precise CSS or layout logic.
+
+**Example from OpenCode:**
+> "Hey Vader, run `vision-sandbox` on this screenshot to find the exact padding of the login card, then update `styles.css` accordingly."
+
+## Pattern Library
 
 If you want to modify the skill:
 
