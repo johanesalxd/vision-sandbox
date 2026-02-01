@@ -7,7 +7,7 @@ from google import genai
 from google.genai import types
 
 
-def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
+def run_vision_sandbox(image_path, prompt, model_id="gemini-3-flash-preview"):
     """
     Executes a vision task using Gemini's native code execution sandbox.
     """
@@ -85,7 +85,7 @@ def main():
         "-p", "--prompt", required=True, help="Instruction for the model"
     )
     parser.add_argument(
-        "-m", "--model", default="gemini-2.0-flash-exp", help="Model ID"
+        "-m", "--model", default="gemini-3-flash-preview", help="Model ID"
     )
 
     args = parser.parse_args()

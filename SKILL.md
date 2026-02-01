@@ -52,4 +52,4 @@ This skill is designed to provide **Visual Grounding** for automated coding agen
 
 ## Configuration
 - **GEMINI_API_KEY**: Required environment variable.
-- **Model**: Defaults to `gemini-2.0-flash-exp`.
+- **Model**: Defaults to `gemini-3-flash-preview`.

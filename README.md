@@ -44,6 +44,8 @@ uv run vision-sandbox --image "sample/how-many-fingers.png" --prompt "Count the 
 ```
 **Result:** The model writes Python code to define bounding boxes for each digit, ensuring an accurate count rather than a visual guess.
 
+![Verification Output](sample/sandbox_output_0_2.png)
+
 ## 🤖 OpenCode Integration
 
 Vision Sandbox is a powerful companion for **OpenCode**.
