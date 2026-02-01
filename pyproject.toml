@@ -3,8 +3,9 @@ name = "vision-sandbox"
 version = "1.0.0"
 description = "Agentic Vision via Gemini's native Code Execution sandbox"
 readme = "README.md"
-authors = [{name = "Jo", email = "jo@example.com"}]
-requires-python = ">=3.11, <3.12"
+authors = [{name = "Jo"}]
+repository = "https://github.com/johanesalxd/vision-sandbox"
+requires-python = ">=3.11"
 dependencies = [
     "google-genai>=1.0.0",
 ]
