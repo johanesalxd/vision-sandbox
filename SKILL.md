@@ -6,6 +6,7 @@ description: Agentic Vision via Gemini's native Code Execution sandbox. Use for 
 metadata:
   openclaw:
     emoji: "🔭"
+    primaryEnv: "GEMINI_API_KEY"
     requires:
       bins: ["uv"]
       env: ["GEMINI_API_KEY"]
