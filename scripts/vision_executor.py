@@ -1,9 +1,11 @@
+import argparse
 import os
 import sys
-import argparse
 from pathlib import Path
+
 from google import genai
 from google.genai import types
+
 
 def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
     """
@@ -24,12 +26,11 @@ def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
     # Load image
     with open(image_path, "rb") as f:
         image_data = f.read()
-    
-    mime_type = "image/jpeg" if image_file.suffix.lower() in [".jpg", ".jpeg"] else "image/png"
-    image_part = types.Part.from_bytes(
-        data=image_data,
-        mime_type=mime_type
+
+    mime_type = (
+        "image/jpeg" if image_file.suffix.lower() in [".jpg", ".jpeg"] else "image/png"
     )
+    image_part = types.Part.from_bytes(data=image_data, mime_type=mime_type)
 
     # Configure model with code execution
     config = types.GenerateContentConfig(
@@ -38,12 +39,10 @@ def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
     )
 
     print(f"--- Sending request to {model_id} ---")
-    
+
     try:
         response = client.models.generate_content(
-            model=model_id,
-            contents=[prompt, image_part],
-            config=config
+            model=model_id, contents=[prompt, image_part], config=config
         )
     except Exception as e:
         print(f"Error during API call: {e}")
@@ -58,11 +57,11 @@ def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
         if part.executable_code:
             print("\n--- SANDBOX CODE ---")
             print(f"```python\n{part.executable_code.code}\n```")
-        
+
         if part.code_execution_result:
             print("\n--- SANDBOX OUTPUT ---")
             print(f"```\n{part.code_execution_result.output}\n```")
-            
+
         if part.text:
             print("\n--- MODEL RESPONSE ---")
             print(part.text)
@@ -70,20 +69,28 @@ def run_vision_sandbox(image_path, prompt, model_id="gemini-2.0-flash-exp"):
     # Extract inline images if generated
     for i, candidate in enumerate(response.candidates):
         for j, part in enumerate(candidate.content.parts):
-            if hasattr(part, 'inline_data') and part.inline_data:
+            if hasattr(part, "inline_data") and part.inline_data:
                 out_path = f"sandbox_output_{i}_{j}.png"
                 with open(out_path, "wb") as f:
                     f.write(part.inline_data.data)
                 print(f"\nMEDIA: {os.path.abspath(out_path)}")
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Vision Sandbox: Gemini Agentic Vision Executor")
+    parser = argparse.ArgumentParser(
+        description="Vision Sandbox: Gemini Agentic Vision Executor"
+    )
     parser.add_argument("-i", "--image", required=True, help="Path to input image")
-    parser.add_argument("-p", "--prompt", required=True, help="Instruction for the model")
-    parser.add_argument("-m", "--model", default="gemini-2.0-flash-exp", help="Model ID")
+    parser.add_argument(
+        "-p", "--prompt", required=True, help="Instruction for the model"
+    )
+    parser.add_argument(
+        "-m", "--model", default="gemini-2.0-flash-exp", help="Model ID"
+    )
 
     args = parser.parse_args()
     run_vision_sandbox(args.image, args.prompt, args.model)
+
 
 if __name__ == "__main__":
     main()
