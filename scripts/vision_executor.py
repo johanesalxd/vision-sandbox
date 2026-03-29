@@ -11,9 +11,19 @@ def run_vision_sandbox(image_path, prompt, model_id="gemini-3-flash-preview"):
     """
     Executes a vision task using Gemini's native code execution sandbox.
     """
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        print("Error: GEMINI_API_KEY not found in environment.")
+        # fallback: read from vader.env
+        vader_env = os.path.expanduser("~/clawd/.secrets/vader.env")
+        if os.path.exists(vader_env):
+            with open(vader_env) as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith("GOOGLE_API_KEY="):
+                        api_key = line.split("=", 1)[1].strip().strip('"')
+                        break
+    if not api_key:
+        print("ERROR: GOOGLE_API_KEY not found in env or vader.env", file=sys.stderr)
         sys.exit(1)
 
     image_file = Path(image_path)
