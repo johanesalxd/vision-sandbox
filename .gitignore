@@ -11,3 +11,6 @@ wheels/
 .opencode/
 .python-version
 .env
+
+# Local OS files
+.DS_Store
