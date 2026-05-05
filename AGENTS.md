@@ -27,10 +27,10 @@ uv sync
 
 The application requires the following environment variable to be set:
 
-- `GEMINI_API_KEY`: Your Google Gemini API key.
+- `GOOGLE_API_KEY`: Your Google Gemini API key.
 
 ```bash
-export GEMINI_API_KEY="your_api_key_here"
+export GOOGLE_API_KEY="your_api_key_here"
 ```
 
 ## 3. Build, Lint, and Test Commands
@@ -51,25 +51,15 @@ uv run ruff format .
 
 # Check for linting errors and fix them
 uv run ruff check --fix .
-
-# Type checking
-uv run mypy .
 ```
 
 ### Testing
 
-**Current Status:** No test suite is currently implemented.
-
-**Future Testing Guidelines:**
-- Use `pytest` as the testing framework.
-- Place tests in a `tests/` directory or alongside source files.
-- Naming convention: `test_*.py` or `*_test.py`.
-
-**Running Tests (when implemented):**
+Tests live in the `tests/` directory and use the stdlib `unittest` framework.
 
 ```bash
-# Run all tests
-uv run pytest
+# Run all tests (no live API call required)
+uv run python -m unittest discover -s tests
 ```
 
 ## 4. Code Style Guidelines

@@ -35,7 +35,7 @@ uv run vision-sandbox --image "path/to/image.png" --prompt "Count the items."
 uv run vision-sandbox --image "screenshot.png" --prompt "Locate the Submit button. Use code execution to verify its center point and return [x, y] coordinates in [0, 1000] scale."
 
 # Custom model
-uv run vision-sandbox --image "image.png" --prompt "Analyze this." --model gemini-3.1-flash-preview
+uv run vision-sandbox --image "image.png" --prompt "Analyze this." --model gemini-3-flash-preview
 ```
 
 ## Flags
