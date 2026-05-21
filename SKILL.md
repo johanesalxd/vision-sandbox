@@ -17,7 +17,7 @@ Gemini's native code execution for precise image analysis. The model writes and 
 uv run vision-sandbox --image "path/to/image.png" --prompt "Identify all buttons and provide [x, y] coordinates."
 
 # Custom model
-uv run vision-sandbox --image "path/to/image.png" --prompt "Count the items." --model gemini-3-flash-preview
+uv run vision-sandbox --image "path/to/image.png" --prompt "Count the items." --model gemini-3.5-flash
 ```
 
 ## Flags
@@ -26,7 +26,7 @@ uv run vision-sandbox --image "path/to/image.png" --prompt "Count the items." --
 |---|---|---|
 | `--image` / `-i` | — | Path to input image (required) |
 | `--prompt` / `-p` | — | Instruction for the model (required) |
-| `--model` / `-m` | `gemini-3-flash-preview` | Model ID |
+| `--model` / `-m` | `gemini-3.5-flash` | Model ID |
 
 ## Prompt patterns
 
